@@ -50,7 +50,7 @@ int main()
                     if(n2==0){
                     cout << "la división no es posible" << endl;
                   }
-                 ese {
+                else {
                     cout << "\nResultado: "<< endl;
                     cout << n1 << " / " << n2 << " = " << n1 / n2 << endl;
                 }
