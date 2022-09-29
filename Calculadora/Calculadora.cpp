@@ -38,14 +38,14 @@ int main()
         }
         else {
             if (op=='*') {
-                cout << "Segundo numero:" ;
+                cout << "Segundo numero: ";
                 cin >> n2;
                 cout << "\nResultado: "<< endl;
                 cout << n1 << " a " << n2 << " = " << n1 * n2 << endl;
             }
             else {
                 if (op == '/') {
-                    cout << "Segundo numero:" ;
+                    cout << "Segundo numero: ";
                     cin >> n2;
                     if(n2==0){
                     cout << "la división no es posible" << endl;
@@ -57,7 +57,7 @@ int main()
                 }
                 else {
                     if (op == '%') {
-                        cout << "Segundo numero:" ;
+                        cout << "Segundo numero: ";
                         cin >> n2;
                         cout << "\nResultado: " << endl;
                         cout << n1 << " % " << n2 << " = " << fmod(n1, n2) << endl;
