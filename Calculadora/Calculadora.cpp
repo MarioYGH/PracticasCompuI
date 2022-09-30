@@ -25,7 +25,7 @@ int main()
     if (op=='+'){
         cout<<"Segundo numero: ";
         cin >> n2;
-        cout<<"La suma de ambos digitos es: ";
+        cout<<"\nResultado: ";
         cout<< n1 << "+" << n2 << "=" << n1+n2 <<endl;
     }
     else{
