@@ -26,14 +26,14 @@ int main()
         cout<<"Segundo numero: ";
         cin >> n2;
         cout<<"\nResultado: ";
-        cout<< n1 << " + " << n2 << "=" << n1+n2 <<endl;
+        cout<< n1 << " + " << n2 << " = " << n1+n2 <<endl;
     }
     else{
         if (op=='-'){
             cout<<"Segundo numero: ";
             cin >> n2;
             cout<<"\nResultado: ";
-            cout<< n1 << " - " << n2 << "=" << n1-n2 <<endl;
+            cout<< n1 << " - " << n2 << " = " << n1-n2 <<endl;
 
         }
         else {
