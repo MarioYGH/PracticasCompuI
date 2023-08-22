@@ -1,0 +1,47 @@
+clc
+clear 
+close all
+
+% c= [2 -5 0 8];
+% polyval(c,2)
+
+% a = [1 -5 -17 21];
+% roots(a)
+
+b = [1 -4 4];
+roots(b)
+polyval(b,4) %Evaluar en 
+
+% Matriz pascal 
+pascal(3) % tamaño de la matriz de pascal 
+% ejemplo
+
+x = pascal(4);
+poly(x) % crea los coeficientes del polinomio, conociendo las raices me da el polinomio  
+
+%ejemplo de la función poly
+%poly([3 5 2])
+
+% función disp, comenta en las lineas junto con código, ejemplo: 
+z = 2;
+disp(['El método de Newton convierte después de',num2str(z),'iteraciones'])
+
+% fprintf, permite comentar y personalizar variables, como la cantidad de decimales, ejemplo:
+fprintf ('\n x=%8.7f\n y=%4.3f\n z=%1.0f\n',x,y,z) %El primer numero en 8.7, el 8 son los numeros totales y el 7 los numeros después del punto 
+% f\n, \n es salto de lines, f es de fix point, se puede cambiar la f por e, que representa que es un exponencial 
+% Y se puede poner la g, con ella matlab decide si deja notación cientifica
+% o no
+
+x = pi*10000; %para tener un número mayor
+fprintf ('\n x=%8.7e\n y=%4.3e\n z=%1.0e\n',x,y,z)
+
+%ahora dividimos entre 10000
+x = pi/10000;
+fprintf ('\n x=%8.7e\n y=%4.3e\n z=%1.0e\n',x,y,z)
+
+%gráficas bonitas 
+x = [-1:0.02:2]; %con valores entre -1 y 2, con paso de 0.02
+y = x.^2+1; % ponemos nuestro polinomio, nota: el punto después de x es para multiplicar por cada elemnto de la matriz 
+plot (x,y) %Finalmente graficamos
+plot (x,y, 'r.:')% linea punteada de color rojo
+plot (x,y, 'b*:')% linea de asterisco de color azul, así con -, +, etc.
