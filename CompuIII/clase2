@@ -1,0 +1,19 @@
+clc
+clear
+close all 
+
+ x = [0:0.1:2*pi];
+ y1=cos(x);
+ y2=sin(x);
+ y3=cos(2*x);
+ plot(x,y1,x,y2,x,y3)
+ 
+ plot(x,y1,'r.:',x,y2,'g*:',x,y3,'y+:') %grafica con 3 elementos, asignando color y forma a cada una.
+ 
+ [x y]=meshgrid(-4.0:0.2:4.0,-4.0:0.2:4.0); % creamos una matriz 3D, y asignamos tamaño de x y así como su paso (Definimos malla)
+ z=exp(-x.^2-y.^2); %Definimos función 
+ mesh(x,y,z) % Graficamos, También podemos usar la función "plot3" o "surf" 
+ 
+ [x y]=meshgrid(-4.0:0.01:4.0,-4.0:0.01:4.0); %Hacemos el paso más corto.
+ z=exp(-x.^2-y.^2);
+ mesh(x,y,z)
