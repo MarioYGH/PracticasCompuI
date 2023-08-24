@@ -1,0 +1,78 @@
+clc
+clear
+close all
+
+%guad función de matlab que resuelve integrales
+%f1(@f2) para funciones anidadas 
+ % ejemplo 
+quad(@f3,-1,1)
+
+%quad(@f3,-2,2) $ Se necesita crear una función 
+
+%operadores logicos &(AND) |(OR) ~(NOT)
+
+%Definimos dos matrices 
+A = [2 7 6;9 0 5;3 0.5 6];
+B = [8 7 0;3 2 5;4 -1 7];
+
+A==B %hacemos una matriz lógica, es decir, los números que sean iguales y compartan posición marcaran 1 
+% A=8;
+% A==B % Si cambiamos por un número compara con los elementos iguales de la
+% matriz
+% Tambiés puede buscar con texto 
+
+M = 'Mi nombre es Bobby' 
+M == 'e'
+
+x = 5;
+x >= [1 2 3;4 5 6;7 8 10] %1 sigmifica verdadero y 0 falso 
+a = 5<10 % Otro ejemplo
+
+y = (6<=7)+(5*3==15) % de esta forma hay dos operadores, si ambas son verdaderas sumaran sus 1, en este caso el resultado es dos
+%Si solo una fuera verdadera, solo sería 1 
+
+y = (3>=2*1)+(8>=10)+(30*0<1) %Ahora con 3 operadores 
+
+x = [-2 4 -5 6];
+y = [2 2 -5 -2];
+t = x>=0 %evalua en x, cuando se cumple
+y(t) %Evaluamos y en dunción de t
+3 + (4<16)/2 % Se puede usar el resultado de un operador lógico para hacer calculos 
+
+[3 4 1]&[0 -1 2] %AND
+[3 4 1]|[0 -1 2] %OR
+[2 0 -1]|0 %OR
+
+% x=-3;
+% -5<x<+2
+
+A = [-1 2 0 3 0 1];
+find(A) % Busca los indices de la matriz diferentes de cero y en que posición de ella se encuentran 
+
+find(A==0) %Acá solo busca los ceros xd
+
+ A(find(A>=0))%Acá se buscan elementos 
+
+D = b^2-4*a*c
+if D>0
+disp('Está ecuación tiene 2 soluciones Reales');
+elseif D==0
+disp('Está ecuación tiene dos soluciones identicas');
+else
+disp('Está ecuación tiene soluciones complejas');
+end
+
+
+c = 80;
+if c>95
+disp('La calificación es A');
+elseif c<=95 & c>86
+disp('La calificación es B');
+elseif c<=86 & c>76
+disp('La calificación es C');
+elseif c<=76 & c>66
+disp('La calificación es D');
+else 
+disp('La calificación es F');
+
+%Hacer una función para esto
