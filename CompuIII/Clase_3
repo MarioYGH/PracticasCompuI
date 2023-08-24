@@ -76,3 +76,9 @@ else
 disp('La calificación es F');
 
 %Hacer una función para esto
+
+%Loops
+x = zeros(1,10);
+for ii=1:10
+    x(ii)=ii^2;
+end
