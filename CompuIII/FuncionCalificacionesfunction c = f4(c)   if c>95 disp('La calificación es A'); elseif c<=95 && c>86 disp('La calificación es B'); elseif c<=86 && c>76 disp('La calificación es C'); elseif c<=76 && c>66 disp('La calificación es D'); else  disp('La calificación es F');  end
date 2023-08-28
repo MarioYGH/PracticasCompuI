@@ -1,0 +1,20 @@
+function c = f4(c)
+
+
+if c>95
+disp('La calificación es A');
+elseif c<=95 && c>86
+disp('La calificación es B');
+elseif c<=86 && c>76
+disp('La calificación es C');
+elseif c<=76 && c>66
+disp('La calificación es D');
+else 
+disp('La calificación es F');
+
+end
+
+%Para llamar en command Window
+% c = 100
+% c = f4(c)
+%
