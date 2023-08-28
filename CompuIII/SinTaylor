@@ -1,0 +1,11 @@
+%sin(x) = n=0 E inf (-1)^n * x^2n+1/ (2n+1)! 
+function approx = taylor(N,x)
+N = input('Entra el numero de terminos de la expresion: ');
+x = input('Entra el valor de x: ');
+approx = 0; 
+for n= 0 : N-1
+    approx = approx+(-1)^n * (2*n + 1) / factorial(2*n + 1)
+end
+fprintf('\n')
+fprintf('error=%.3g\n',approx-sin(x));
+end
