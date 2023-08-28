@@ -1,0 +1,12 @@
+clc
+clear
+close all
+
+N = 10; %El valor que se cambia
+x = 2;
+approx = 0;
+for n=0:N-1
+    approx = approx +(-1)^n*x^(2*n+1)/factorial(2*n+1)
+end
+
+fprintf('error = %.3g\n',approx-sin(x))
