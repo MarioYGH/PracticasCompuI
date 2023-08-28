@@ -1,0 +1,9 @@
+function [x] = f5(x)
+tStart = tic; 
+for ii=1:1000000 %Paso 
+    x(ii)=ii^2;
+   
+end
+ tEnd = toc(tStart)  
+end
+%Se añadió la función tic toc para medir el tiempo
