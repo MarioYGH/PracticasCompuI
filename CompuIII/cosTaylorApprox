@@ -1,0 +1,10 @@
+function [out] = cosTaylorApprox(x,N)
+%Input = x,N
+%Out = Un vector con la aprox de sin con serie de Taylor
+out = zeros(1,numel(x));
+for i = 1:numel(x)
+    for k = 0:N
+        out(i) = out(i)+ ( (-1)^k * (x(i))^(2*k) ) / factorial(2*k);
+    end
+end
+end
