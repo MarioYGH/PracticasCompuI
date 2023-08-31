@@ -8,3 +8,25 @@ for i = 1:numel(x)
     end
 end
 end
+
+%Probamos en command window
+x = -4:0.1:6;
+y = cos(x);
+plot(x,y,'Linewidth',3);
+title('Estudio de series de Taylor');
+xlabel('x')
+ylabel('cos(x) con diferentes terminos')
+grid on %pone una malla
+hold on %Mantiene la grafica abierta y pone más cosas sobre ella 
+eval = cosTaylorApprox(x,2);
+plot(x,eval,'g')
+eval = cosTaylorApprox(x,4);
+plot(x,eval,'b')
+eval = cosTaylorApprox(x,6);
+plot(x,eval,'y')
+eval = cosTaylorApprox(x,8);
+plot(x,eval,'+')
+eval = cosTaylorApprox(x,10);
+plot(x,eval,'b-')
+eval = cosTaylorApprox(x,2);
+legend('cos(x)','2-term','4_term','6_term','8_term','10_term') % Por si queremos poner una leyenda a la gráfica
