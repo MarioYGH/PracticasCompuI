@@ -12,4 +12,4 @@ for i = 1:iteraciones  %paso
 end
 display("Con " + iteraciones + " iteraciones para el método de Newton");
 display(xnext); %Valor final 
-fprintf('El error es = %.7g\n'), abs(sqrt(2)-(xnext)); %Abs, Valor absoluto %%Im
+fprintf('El error es = %.7g\n'), abs(sqrt(2)-(xnext)) %Abs, Valor absoluto %%Imprime el valor 
