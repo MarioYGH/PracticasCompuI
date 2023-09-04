@@ -1,0 +1,15 @@
+clc
+close 
+clear all
+
+f = @(x) x^2-2; %funcion que depende de x
+fdiff = @(x) 2*x; %Derivada de la función 
+x0 = 1; %Valor inicial
+iteraciones = 3;%Definimos una variable que va a indicar el número de iteraciones
+xnext = x0;
+for i = 1:iteraciones  %paso 
+    xnext=xnext-f(xnext)/fdiff(xnext);
+end
+display("Con " + iteraciones + " iteraciones para el método de Newton");
+display(xnext); %Valor final 
+fprintf('El error es = %.7g\n'), abs(sqrt(2)-(xnext)); %Abs, Valor absoluto %%Im
