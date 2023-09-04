@@ -2,7 +2,7 @@ clc
 close
 clear all
 
-f = @(x) log(x)+x;
+f = @(x) log(x)+x;                           
 fdiff = @(x) 1/x+1; %Derivada
 t = 0.1:0.01:3;
 y = f(t)
@@ -24,3 +24,19 @@ plot(t,y);
 hold on;
 plot (guesses,f(guesses),'ro');
 hold off;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%Otro ejemplo
+f = @(x) cos(x);
+fdiff = @(x) -sin(x); %Derivada
+t = 0.1:0.01:5;
+y = f(t)
+x0 = 1; %Valor inicial
+iteraciones = 10
+
+%%%%Otro ejemplo
+f = @(x) x.^2;
+fdiff = @(x) 2*x; %Derivada
+t = 0.1:0.01:5;
+y = f(t)
+x0 = 3; %Valor inicial
+iteraciones = 5 % 10 
