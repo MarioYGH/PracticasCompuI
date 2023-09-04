@@ -1,0 +1,26 @@
+clc
+close
+clear all
+
+f = @(x) log(x)+x;
+fdiff = @(x) 1/x+1; %Derivada
+t = 0.1:0.01:3;
+y = f(t)
+x0 = 2; %Valor inicial
+iteraciones = 5 ; %número de iteraciones
+xnext = x0;
+guesses = [];
+for i=1:iteraciones
+    a = xnext; %Guarda el primer valor de xnext, antes de la primera iteración
+    xnext=xnext-f(xnext)/fdiff(xnext);
+    guesses=[guesses,xnext];
+    b = xnext; %Valor de xnext después del método de Newton
+end 
+display("Con " + iteraciones + " iteraciones para el método de Newton");
+display(xnext); %Valor final 
+fprintf('El error es = %.7g\n'), abs(a - b) %Error
+figure 
+plot(t,y);
+hold on;
+plot (guesses,f(guesses),'ro');
+hold off;
