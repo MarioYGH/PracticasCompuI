@@ -1,0 +1,78 @@
+% clc
+% clear
+% close all
+% 
+% f = @(z) z.^3-1; %función dependiente de z
+% fp = @(z) 3*z.^2; %Derivada
+% root1 = 1;
+% root2 = -1/2 + 1i*sqrt(3)/2;
+% root3 = -1/2 - 1i*sqrt(3)/2;
+% xmin = -2;
+% xmax = 2;
+% ymin = -2;
+% ymax = 2;
+% nx = 10000;
+% ny = 10000;
+% 
+% x = linspace(xmin,xmax,nx); %Distribución equidistante de todos los puntos 
+% y = linspace(ymin,ymax,ny);
+% [X,Y] = meshgrid(x,y);
+% z = X + 1i*Y 
+% 
+% nit = 50; %5 iteraciones 
+% for n = 1:nit
+%     z = z - f(z)./fp(z);
+% end
+% 
+% eps = 0.001;
+% z1 = abs(z-root1)<eps;
+% z2 = abs(z-root2)<eps;
+% z3 = abs(z-root3)<eps;
+% z4 =~(z1+z2+z3);
+% 
+% figure;
+% map = [1 0 0;0 1 0;0 0 1;0 0 0]; %red,green,blue,black
+% colormap = (map);
+% z = (1*z1 + 2*z2 + 3*z3 + 4*z4);
+% image([xmin xmax],[ymin ymax],z);
+% 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+f =@(z) z.^3 - 1; 
+fP=@(z) 3*z.^2;
+root1 = 1; 
+root2 = -1/2 + 1i * sqrt(3)/2 ;
+root3= -1/2 - 1i * sqrt(3)/2 ;
+
+xmin = -2;
+xmax = 2 ;
+ymin = -2;
+ymax= 2;
+nx = 10000 ;
+ny = 10000;
+x = linspace (xmin,xmax,nx);
+y = linspace(ymin,ymax,ny);
+[X,Y] = meshgrid(x,y); 
+z = X + 1i*Y ; 
+
+nit=50;
+for n=1 : nit
+    z=z-f(z)./fP(z); 
+end
+
+eps = 0.001;
+z1 = abs(z - root1) < eps ;
+z2 = abs(z - root2) < eps ;
+z3 = abs(z - root3) < eps ;
+z4 = ~(z1+z2+z3);
+
+figure
+map = [1 0 0; 0 1 0; 0 0 1; 0 0 0];
+%tarea cambiar el mapa de colores para el fractal 
+colormap(map); 
+z = (1*z1 + 2*z2 + 3*z3 + 4*z4 ); 
+image([xmin xmax], [ymin ymax], z);
