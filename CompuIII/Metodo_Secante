@@ -1,0 +1,36 @@
+clc
+close
+clear all
+
+f = @(x) x.^2 - 2;                           
+t = 0.1:0.01:3;
+y = f(t)
+x0 = 1;
+x1 = 2; 
+e=10^-6;
+ ea=1000;
+
+iteraciones = 3; %número de iteraciones
+
+guesses = [];
+    c=1;
+   while ea>e
+    x = x0;
+    g = f(x0);
+      x = x1;
+        gg= f(x1);
+        xi=x1-((gg*(x0-x1))/(g-gg));
+         ea=abs((xi-x1)/xi)*100;
+          guesses=[guesses,xi];
+      x0=x1;
+     x1=xi;
+    c=c+1;    
+   
+end 
+display("Con " + iteraciones + " iteraciones para el método de la secante");
+display(xi); %Valor final 
+fprintf('El error es = %.7g\n'), abs(xi - x0) %Error
+figure 
+plot(t,y);
+hold on;
+plot (guesses,f(guesses),'ro');
