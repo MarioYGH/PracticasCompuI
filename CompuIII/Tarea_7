@@ -2,12 +2,12 @@ clc
 close
 clear all
 
-f = @(x) x.^2+1;                           
+f = @(x) x.^2 + 1;                           
 fdiff = @(x) 2*x; %Derivada
-t = -3:0.01:3;
+t = -4:0.01:4;
 y = f(t)
 x0 = 3; %Valor inicial
-iteraciones = 10000 ; %número de iteraciones
+iteraciones = 5 ; %número de iteraciones
 xnext = x0;
 guesses = [];
 for i=1:iteraciones
@@ -21,5 +21,5 @@ display(xnext); %Valor final
 fprintf('El error es = %.7g\n'), abs(a - b) %Error
 figure 
 plot(t,y);
-figure
+hold on;
 plot (guesses,f(guesses),'ro');
