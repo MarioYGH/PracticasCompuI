@@ -4,9 +4,9 @@ clear all
 
 f = @(x) x.^2+1;                           
 fdiff = @(x) 2*x; %Derivada
-t = 0.1:0.01:3;
+t = -3:0.01:3;
 y = f(t)
-x0 = 2; %Valor inicial
+x0 = 3; %Valor inicial
 iteraciones = 10000 ; %número de iteraciones
 xnext = x0;
 guesses = [];
@@ -21,3 +21,5 @@ display(xnext); %Valor final
 fprintf('El error es = %.7g\n'), abs(a - b) %Error
 figure 
 plot(t,y);
+figure
+plot (guesses,f(guesses),'ro');
