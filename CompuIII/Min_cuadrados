@@ -1,0 +1,42 @@
+%Debemos de crear un archivo de texto .txt con los siguientes datos 
+15.0 600
+15.5 650
+16.0 630
+17.0 680
+17.5 670 
+19.0 690
+20.0 710
+21.5 730
+23.0 740
+25.0 800
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Código en Matlab
+clc
+clear 
+close all 
+
+A = dlmread('datos.txt');
+x = A(:,1);
+y = A(:,2);
+plot(x,y,'bo','MarkerFaceColor','r');
+lin = polyfit(x,y,1);
+Beta_0 = lin(2);
+Beta_1 = lin(1);
+yfit = Beta_0 + Beta_1*x;
+hold on
+%Cambiamos fonts
+ax = gca;
+ax.FontSize=12;
+plot (x,yfit,'g','LineWidth',2);
+xlabel('Temperature (^oC)');
+ylabel('Resistencia (\Omega)');
+grid on
+legend({'Datos','Regresión lineal'},'Location','Northwest','Orientation','horizontal');
+%Ponemos etiquetas a los datos 
+a = (1:10)';
+b = num2str(a);
+c = cellstr(b);
+dx = 0.1;
+dy = 0.1;
+text(x+dx,y+dy,c);
