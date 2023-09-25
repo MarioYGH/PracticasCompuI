@@ -1,0 +1,23 @@
+clc
+clear
+close all
+%El método de eliminación de Gauss
+%Paso 1- Definir la matriz A y el vector b
+tic
+%Definir el número de lineas 
+linycol = 10000;
+A = rand (linycol); %matriz aleatoria de 10x10
+b = rand (linycol,1);
+%Fin del paso 1
+%Paso 2- Verificar si el determinante NO es cero
+if det(A) == 0
+    disp('El determinante es cero, no hay solución única')
+    return 
+end
+%End Paso 2
+%Paso 3- Calcular la solución
+disp('Calculando la solución, esperate prrro!')
+x = A\b;
+x = vpa(x,6)
+disp('......LISTO!...')
+toc
