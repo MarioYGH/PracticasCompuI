@@ -1,0 +1,47 @@
+clc
+clear
+close all
+%El método de eliminación de Gauss
+%Paso 1- Definir la matriz A y el vector b
+tic
+%Definir el número de lineas 
+linycol = 10000;
+A = rand (linycol); %matriz aleatoria de 10x10
+b = rand (linycol,1);
+%Fin del paso 1
+%Paso 2- Verificar si el determinante NO es cero
+if det(A) == 0
+    disp('El determinante es cero, no hay solución única')
+    return 
+end
+%End Paso 2
+%Paso 3- Calcular la matriz aumentada (M)
+disp('Esta matriz aumnetada M')
+M = [A b];
+%paso 4- Aplicar el metodo de Gauss
+[m,n] = size(M);
+for j=1:m-1
+    for z=j+1:m
+        if M(j,j)==0
+            tmp = M(j,:);M(j,:) = M(z,:);
+            M(z,:)=tmp;
+        end
+    end
+    for i = j+1:m
+        M(i,:) = M(i,:)-M(j,:)*(M(i,j)/M(i,j));
+    end
+end
+
+%paso - Calcular la solución
+disp('Calculando la solución, espera por favor')
+x=zeros(m,1);
+for s=m:-1:1
+    R=0;
+    for k=s+1:m
+        R=R+M(s,k)*x(k,1);
+    end
+    x(s,1)= (M(s,n)-R)/M(s,s);
+end
+x = vpa(x,6)
+%.......LISTO...
+toc
