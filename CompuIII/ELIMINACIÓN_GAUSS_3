@@ -1,0 +1,24 @@
+clc
+clear 
+close all 
+
+%28/09/23
+tic
+lin_y_col=10000; 
+%paso 1: define la matrix A y el vector b 
+A=rand(lin_y_col); 
+b=rand(lin_y_col,1); 
+%paso 2: verificar si el det no es zero 
+if det(A)==0
+    disp('det(A)=0, entonces no hay solucion'); 
+    return 
+end 
+%paso 3: decomposición LU de A 
+[L,U]=lu(A); 
+%paso 4: calcular la solución 
+y=L\b; 
+x=U\y; 
+x=vpa(x,4); 
+disp('LISTO');
+disp(x)
+toc
