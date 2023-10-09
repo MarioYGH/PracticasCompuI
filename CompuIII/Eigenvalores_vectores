@@ -1,0 +1,18 @@
+clc
+clear
+close all
+
+A = [1 -2; -2 1];
+det(A)
+inv(A)
+rref([A eye(2)])
+%Eigenvalores
+L = eig(A)
+
+%Eigenvectores 
+[V,L] = eig(A)
+V'*V % = I matriz identidad
+V*V' % = I
+
+V*L*V' % Matriz A
+V*L^-1*V'%Inversa de la matriz A
