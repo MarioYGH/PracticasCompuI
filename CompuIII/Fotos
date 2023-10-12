@@ -22,4 +22,7 @@ for k = 1: length(thefile)
     A = imread(fullFileName);
     % A_rot = imrotate(A, 270);
     imshow(A);
+    imagen_nueva = imresize(A,[112 92]); %Cambiar tamaño a 112*92 pixeles
+    imwrite(imagen_nueva,strcat(num2str(k),'.pgm'));
+    whos imagen_nueva
 end
