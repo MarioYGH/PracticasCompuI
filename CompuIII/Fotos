@@ -1,0 +1,25 @@
+clc % clear command window
+% % para poner coemnatrios 
+clear %limpia espacio de trabajo 
+close % cierra todas las figuras
+close all %cierra todas las figuras 
+
+
+%Directorio donde tenemos las imagenes (15) guardadas
+miDirectorio = "C:\Users\V303_09\Documents\MATLAB\S6";
+%Verificar si el directorio existe
+if(~isfolder(miDirectorio))
+    mensaje_de_err = sprintf('El directorio no existe:\n%s', miDirectorio);
+    uiwait(warndlg(mensaje_de_err));
+    return;
+end
+%Obtener una lista con todas las fotografías del directorio
+fileP = fullfile(miDirectorio,'*jpeg');
+thefile = dir(fileP);
+for k = 1: length(thefile)
+    baseFileName = thefile(k).name;
+    fullFileName = fullfile(miDirectorio, baseFileName);
+    A = imread(fullFileName);
+    % A_rot = imrotate(A, 270);
+    imshow(A);
+end
