@@ -1,0 +1,22 @@
+function output_value = load_database()
+% vamos a definir unas variables persitentes 
+persistent loaded ;
+persistent numeric_Imaje ;
+if (isempty(loaded))
+    all_Images = zeros(10304,10);
+    for i = 1:10 
+        cd(strcat('Datos/s',num2str(i)));
+        for j = 1:15 
+            image_Container = imread(strcat(num2str(j),'.pgm'));
+            all_Images(:,(i-1)*10+j)=reshape(image_Container, size(image_Container,1)*size(image_Container,2),1);
+        end 
+        % es bueno hqcer que el codigo diga que esta funcionando para saberlo y no pensar que esta trabado y saber por donde va
+        display('Cargando la base de datos . . . ...');
+        cd ../..
+    end
+    %Vamos a usar "units" para reducir el uso de la memoria RAM
+    numeric_Image = uint8(all_Images);
+end %end de la función output_value
+
+loaded = 1; %que sea 1 significa que ya se cargó la base de datos
+output_value = numeric_Image;
