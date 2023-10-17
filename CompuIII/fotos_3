@@ -1,17 +1,53 @@
-%codigo para reconocimiento de imagenes
-%primero tenemos qeu cargar la base de datos 
-loaded_Image=load_database(); 
-%segundo vamos a elegir una foto de la base de datos randomly 
-random_Index=round(100*rand(1,1)); 
-%cargar la imagen con el index generado aleatorio 
-random_Image=loaded_Image(:,random_Index); 
-%el resto de las imágenes se cargan a otra variable 
-rest_of_the_images=loaded_Image(:,1:1:end); 
-%una variable que se usa como número de líenas para generar una firma de
-%cada imagen 
+clc
+clear
+close all
+%cargamos base de datos
+loaded_Image=load_database();
+%elegimos una foto de manera aleatoria 
+random_Index=round(100*rand(1,1));
+random_Image=loaded_Image(:,random_Index);
+% el resto de las imagenes se cargana aotro variable
+rest_of_the_images=loaded_Image(:,1:1:end);
+%una variable que se usa como numero de lineas para generar una firma de
+%cada imagen
 image_Signature=20;
-%inicializamos matrices de cálculo (i.e. de trabajo)
-white_Image=uint8(ones(1,size(rest_of_the_images,2))); 
-%calcular el promedio del resto de las fotos
+%inicializamos matrices de calculo balncas
+white_Image=uint8(ones(1,size(rest_of_the_images,2)));
+%calculamos el promedio de las fotos(matrices)
 mean_value=uint8(mean(rest_of_the_images,2));
-%Vamos a remover la foto promedio de cada foto
+%vamos a remomover la foto promedio de cad foto
+mean_Removed=rest_of_the_images-uint8(single(mean_value)*single(white_Image));
+%los eigen valores se calculan para la matriz L:
+L=single(mean_Removed)'*single(mean_Removed);
+%eigen valores y eigen vectores(V)
+[V,D]=eig(L);
+V=single(mean_Removed)*V;
+%para cada foto tengo su propio eig vector 
+V=V(:,end:-1:end-(image_Signature-1));
+all_image_Signature=zeros(size(rest_of_the_images,2),image_Signature);
+
+for i= 1:size(rest_of_the_images,2)
+
+   all_image_Signature(i,:)=single(mean_Removed(:,i))'*V;
+end
+
+subplot(121)
+%mostramos la foto que estamos buscando
+imshow(reshape(random_Image,112,92));
+title('Buscando esta foto');
+subplot(122)
+p=random_Image - mean_value;
+s=single(p)'*V;
+z=[];
+
+for i= 1:size(rest_of_the_images,2)
+    z=[z,norm(all_image_Signature(i,:)-s,2)];
+    if (rem(i,image_Signature)==0)
+        imshow(reshape(rest_of_the_images(:,i),112,92));
+    end
+    drawnow;
+end
+[a,i]=min(z);
+subplot(122);
+imshow(reshape(rest_of_the_images(:,i),112,92))
+title('Reconocimiento exitoso')
