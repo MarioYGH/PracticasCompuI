@@ -1,0 +1,35 @@
+clc
+clear all 
+close all
+
+%Leer la foto del tlacuachito
+A = imread("Tlacuache.jpeg");
+%Convertir a la foto a doble
+A = im2double(A);
+R = A(:,:,1); %RED
+G = A(:,:,2); %GREEN
+B = A(:,:,3); %BLUE
+%Hacer SVD para cada canal de color base 
+[UR,SR,VR] = svd(R);
+[UG,SG,VG] = svd(G);
+[UB,SB,VB] = svd(B);
+DR = UR*SR*VR';
+DG = UG*SG*VG';
+DB = UB*SB*VB';
+
+%Vamos a crear un nuevo tlacuache
+figure('Position',[50 50 800 800])
+subplot(2,2,1)
+M(:,:,1) = DR;
+M(:,:,2) = DG;
+M(:,:,3) = DB;
+imshow(M);
+title('Tlacuache original');
+subplot(2,2,2)
+k = 100
+Mk(:,:,1) = UR(:,1:k)*SR(1:k,1:k)*VR(:,1:k)';
+Mk(:,:,2) = UG(:,1:k)*SG(1:k,1:k)*VG(:,1:k)';
+Mk(:,:,3) = UB(:,1:k)*SB(1:k,1:k)*VB(:,1:k)';
+imshow(Mk);
+title('Tlacuache recompuesto con k=100');
+imwrite(uint8(Mk),strcat('Tlacuache_',num2str(k),'.jpeg'))
