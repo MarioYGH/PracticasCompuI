@@ -1,0 +1,67 @@
+%% lAPLACE 
+close all
+clear
+clc
+
+%paso 1: definir el dominio de calculo y los parametros del grid, la malla,
+%para dsicretizar ese dominio
+
+Lx=1;
+Ly=1;
+
+% definir los puntos de calculo en cada direccion 
+%direccion(esta es la resolucion del modelo)
+Nx=100;
+Ny=100;
+%definir LOS PUNTOS DE CALCULO INCLUYENDO LAS FRONTERAS
+nx=Nx+1;
+ny=Ny+1;
+%defino dx y dy o sea el tamaño de la malla
+dx= Lx/Nx;
+dy= Ly/Ny;
+
+%Calcular las coordenadas de cada punto de la malla
+x=(0:Nx)*dx;
+y=(0:Ny)*dy;
+
+%Paso 2
+%Vamos a definir los índices de las fronteras, osea, nos tenemos que saltar
+%los intermedios.
+
+%boundary_index=[abajo, izquierda, arriba, derecha]
+boundary_index=[1:nx, 1:nx:1+(ny-1)*nx,1+(ny-1)*nx:nx*ny,nx:nx:nx*ny];
+%Paso 3- definir la matriz Grande A
+
+diagonals=[4*ones(nx*ny,1),-ones(nx*ny,4)];
+
+A=spdiags(diagonals,[0 -1 1 -nx nx],nx*ny, nx*ny);
+
+I=speye(nx*ny);
+
+A(boundary_index,:)= I(boundary_index,:);
+%Paso 4_condiciones de frontera
+
+b=zeros(nx,ny);
+b(:,1)=0;
+b(1,:)=0;
+
+b(:,ny)=4*x.*(1-x);
+b(nx,:)=0;
+b=reshape(b,nx*ny,1);
+
+%Paso 5- resolver la ecuación A*phi=b
+%vamos a usar eliminación de gauss
+
+phi=A\b;
+phi = reshape(phi, nx, ny);
+
+%paso 6.- graficar la solucion
+
+[X, Y] = meshgrid(x, y);
+v = [0.8 0.6 0.4 0.2 0.1 0.05 0.01];
+contour(X, Y, phi', v, 'showtext', 'on');
+set(gca, 'XTick', [0, 0.2, 0.4, 0.6, 0.8, 1]);
+set(gca, 'YTick', [0 0.2 0.4 0.6 0.8 1]);
+xlabel('$x$', 'Interpreter','latex', 'FontSize',14);
+ylabel('$y$', 'Interpreter','latex', 'FontSize',14);
+title('La solucion de la ecuacion de laplace en 2D','Interpreter','latex', 'FontSize',16);
