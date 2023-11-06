@@ -1,0 +1,22 @@
+clc
+close
+clear all
+
+% %Matriz identidad "N"
+% N = eye(1000);
+% disp (N(1:4,1:4));
+% %P es la matriz "sparse"
+% P = sparse(N);
+% disp (P(1:4,1:4));
+
+N = zeros(1000);
+N(562:564,890:893) = [9 6 2 1;2 4 2 2;9 3 7 8];
+[n,c] = size(N);
+disp(['N tiene' num2str(n) 'lineas y' num2str(c) 'columnas']);
+disp(N(561:565,889:894))
+P = sparse(N);
+disp(P)
+
+% S = sparse([1 3 5 2],[2 1 3 4],[11 12 13 14],5,5)
+% 
+% spy(S)
